@@ -786,7 +786,7 @@ const Portfolio = () => {
                   <motion.a
                     {...fadeInUp}
                     transition={{ delay: 0.1 }}
-                    href="https://linkedin.com"
+                    href="www.linkedin.com/in/atharvakanawade"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`p-6 rounded-xl ${
@@ -803,7 +803,7 @@ const Portfolio = () => {
                   <motion.a
                     {...fadeInUp}
                     transition={{ delay: 0.2 }}
-                    href="https://github.com"
+                    href="https://github.com/05Atharva"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`p-6 rounded-xl ${
