@@ -859,7 +859,6 @@ const Portfolio = () => {
             © 2025 Atharva Kanawade. Built with Next.js, TypeScript & Tailwind CSS.
           </p>
           <p className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-500'} mt-2`}>
-            Secured with ❤️ | Powered by AI
           </p>
         </div>
       </footer>
