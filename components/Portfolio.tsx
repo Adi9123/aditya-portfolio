@@ -101,24 +101,73 @@ const Portfolio = () => {
     },
   ];
 
+  // 🔹 New skill model: level is a label, not a percent. No bars.
   const skills = {
     security: [
-      { name: 'Penetration Testing', level: 85, tools: ['Nmap', 'Burp Suite'] },
-      { name: 'Network Security', level: 90, tools: ['CCNA Certified', 'WAF', 'Honeypots'] },
-      { name: 'Threat Detection', level: 85, tools: ['SIEM', 'IDS/IPS'] },
-      { name: 'Secure Development', level: 80, tools: ['OWASP', 'MFA Implementation'] },
+      {
+        name: 'Penetration Testing',
+        level: 'Advanced',
+        tools: ['Nmap', 'Burp Suite', 'Web Apps', 'Network'],
+      },
+      {
+        name: 'Network Security',
+        level: 'Advanced',
+        tools: ['CCNA Certified', 'Firewalls & WAF', 'Honeypots'],
+      },
+      {
+        name: 'Threat Detection',
+        level: 'Strong',
+        tools: ['SIEM', 'Log Analysis', 'Alert Tuning'],
+      },
+      {
+        name: 'Secure Development',
+        level: 'Strong',
+        tools: ['OWASP', 'MFA Implementation', 'Threat Modeling'],
+      },
     ],
     ml: [
-      { name: 'Deep Learning', level: 85, tools: ['TensorFlow', 'Keras', 'CNNs'] },
-      { name: 'Classical ML', level: 88, tools: ['Scikit-learn', 'XGBoost', 'Random Forest'] },
-      { name: 'Computer Vision', level: 82, tools: ['OpenCV', 'MobileNetV2', 'YOLO'] },
-      { name: 'Model Deployment', level: 80, tools: ['Flask', 'AWS EC2', 'Docker'] },
+      {
+        name: 'Deep Learning',
+        level: 'Advanced',
+        tools: ['TensorFlow', 'Keras', 'CNNs'],
+      },
+      {
+        name: 'Classical ML',
+        level: 'Advanced',
+        tools: ['Scikit-learn', 'XGBoost', 'Random Forest'],
+      },
+      {
+        name: 'Computer Vision',
+        level: 'Strong',
+        tools: ['OpenCV', 'MobileNetV2', 'YOLO'],
+      },
+      {
+        name: 'Model Deployment',
+        level: 'Strong',
+        tools: ['Flask APIs', 'AWS EC2', 'Docker'],
+      },
     ],
     engineering: [
-      { name: 'Python Development', level: 90 },
-      { name: 'Cloud Infrastructure', level: 75, tools: ['AWS EC2', 'ThingSpeak'] },
-      { name: 'Web Development', level: 78, tools: ['React', 'Flask', 'REST APIs'] },
-      { name: 'IoT & Embedded', level: 80, tools: ['ESP32', 'Sensors', 'Firmware'] },
+      {
+        name: 'Python Development',
+        level: 'Expert',
+        tools: ['Automation', 'Backend Services', 'Scripting'],
+      },
+      {
+        name: 'Cloud Infrastructure',
+        level: 'Strong',
+        tools: ['AWS EC2', 'Monitoring', 'Basic IaC'],
+      },
+      {
+        name: 'Web Development',
+        level: 'Strong',
+        tools: ['React', 'Flask', 'REST APIs'],
+      },
+      {
+        name: 'IoT & Embedded',
+        level: 'Strong',
+        tools: ['ESP32', 'Sensors', 'Firmware'],
+      },
     ],
   };
 
@@ -141,7 +190,7 @@ const Portfolio = () => {
   ];
 
   const achievements = [
-    { title: 'CTF Winner - NigVanta\'25', description: 'Capture The Flag Competition Champion' },
+    { title: "CTF Winner - NigVanta'25", description: 'Capture The Flag Competition Champion' },
     { title: 'Innovators Challenge 2k24', description: 'Winners - 24 Hour Hackathon' },
   ];
 
@@ -914,53 +963,42 @@ const Portfolio = () => {
                         >
                           {category === 'ml' ? 'Machine Learning' : category}
                         </h3>
+
                         <div className="grid md:grid-cols-2 gap-6">
                           {skillList.map((skill, idx) => (
                             <div
                               key={idx}
-                              className={`p-4 rounded-lg ${
+                              className={`p-5 rounded-xl ${
                                 isDark
-                                  ? 'bg-slate-800/50 border border-cyan-500/20'
+                                  ? 'bg-slate-800/60 border border-cyan-500/20'
                                   : 'bg-white border border-gray-200'
-                              }`}
+                              } flex flex-col gap-3`}
                             >
-                              <div className="flex justify-between items-center mb-2">
-                                <span
-                                  className={`font-semibold ${
+                              <div className="flex items-start justify-between gap-3">
+                                <h4
+                                  className={`font-semibold text-lg ${
                                     isDark ? 'text-white' : 'text-gray-900'
                                   }`}
                                 >
                                   {skill.name}
-                                </span>
-                                <span className="text-cyan-400 text-sm">
-                                  {skill.level}%
-                                </span>
+                                </h4>
+                                {skill.level && (
+                                  <span className="text-xs px-2 py-1 rounded-full bg-cyan-500/15 text-cyan-300 uppercase tracking-wide">
+                                    {skill.level}
+                                  </span>
+                                )}
                               </div>
-                              <div
-                                className={`w-full h-2 ${
-                                  isDark ? 'bg-slate-700' : 'bg-gray-200'
-                                } rounded-full overflow-hidden`}
-                              >
-                                <motion.div
-                                  initial={{ width: 0 }}
-                                  animate={{ width: `${skill.level}%` }}
-                                  transition={{
-                                    duration: 1,
-                                    delay: catIdx * 0.1 + idx * 0.05,
-                                  }}
-                                  className="h-full bg-gradient-to-r from-cyan-500 to-purple-500"
-                                />
-                              </div>
+
                               {skill.tools && (
-                                <div className="mt-3 flex flex-wrap gap-2">
-                                  {skill.tools.map((tool, i) => (
+                                <div className="flex flex-wrap gap-2 mt-1">
+                                  {skill.tools.map((tool: string, i: number) => (
                                     <span
                                       key={i}
-                                      className={`px-2 py-1 text-xs ${
+                                      className={`px-2 py-1 text-xs rounded ${
                                         isDark
                                           ? 'bg-slate-700 text-gray-300'
                                           : 'bg-gray-100 text-gray-700'
-                                      } rounded`}
+                                      }`}
                                     >
                                       {tool}
                                     </span>
@@ -1377,8 +1415,7 @@ const Portfolio = () => {
               className={`text-sm ${
                 isDark ? 'text-gray-500' : 'text-gray-500'
               } mt-2`}
-            >
-            </p>
+            />
           </div>
         </footer>
       </div>
