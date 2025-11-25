@@ -39,104 +39,166 @@ const Portfolio = () => {
   ];
 
   const projects = [
-    {
-      title: 'ARTEMIS',
-      subtitle: 'Advanced Reactive Threat Elimination & Monitoring System',
-      description:
-        'Full-spectrum security platform combining ML-powered phishing detection (90%+ accuracy) with hardware-based wireless defense and cloud honeypot infrastructure.',
-      tags: ['Security', 'ML', 'Cloud'],
-      tech: ['Python', 'Scikit-learn', 'Flask', 'AWS EC2', 'ESP32'],
-      highlights: [
-        'Naive Bayes classifier achieving 90%+ phishing detection accuracy',
-        'ESP8266/ESP32 system blocking 85%+ deauth attacks',
-        'AWS EC2 honeypots for threat intelligence gathering',
-        'Lightweight WAF with SQLi/XSS protection and rate limiting',
-      ],
-      github: 'https://github.com/05Atharva/ARTEMIS',
-      featured: true,
-    },
-    {
-      title: 'Harvest-Health',
-      subtitle: 'AI-Powered Crop Monitoring Rover',
-      description:
-        'IoT-enabled agricultural solution using CNN for real-time crop disease detection, with automated farmer notifications via cloud integration.',
-      tags: ['ML', 'IoT'],
-      tech: ['TensorFlow', 'Keras', 'OpenCV', 'ThingSpeak', 'Twilio'],
-      highlights: [
-        'CNN model with 90%+ accuracy for potato leaf disease detection',
-        'Custom rover with sensors for autonomous field monitoring',
-        'Real-time cloud data transmission via ThingSpeak',
-        'SMS alert system using Twilio API integration',
-      ],
-      github: 'https://github.com/05Atharva/Harvest-Health',
-    },
-    {
-      title: 'ResponseForge',
-      subtitle: 'NIST-Compliant Incident Response Automation',
-      description:
-        'Enterprise-grade React application automating NIST SP 800-61 incident response plan generation with 92% enterprise validation rating.',
-      tags: ['Security', 'Web'],
-      tech: ['React.js', 'JavaScript', 'HTML/CSS'],
-      highlights: [
-        'NIST SP 800-61 compliant plan generation',
-        '90% reduction in manual IR planning effort',
-        'PDF export in under 2 minutes',
-        '92% relevance rating in enterprise simulations',
-      ],
-      github: 'https://github.com/05Atharva/ResponseForge',
-    },
-    {
-      title: 'Automotive Part QC Classifier',
-      subtitle: 'Industrial AI Quality Control System',
-      description:
-        'Production-ready computer vision system for automated part inspection using transfer learning, deployed as standalone executable for factory floor operations.',
-      tags: ['ML', 'Industrial'],
-      tech: ['TensorFlow', 'MobileNetV2', 'OpenCV', 'PyInstaller'],
-      highlights: [
-        'Transfer learning with MobileNetV2 for part classification',
-        'Reliable detection across multiple part variants',
-        'Packaged as .exe for non-technical factory use',
-        'Real-time quality assessment pipeline',
-      ],
-    },
-  ];
+  {
+    title: "ARTEMIS",
+    subtitle: "Advanced Reactive Threat Elimination & Monitoring System",
+    description:
+      "Full-spectrum security platform combining ML-powered phishing detection (90%+ accuracy) with hardware-based wireless defense and cloud honeypot infrastructure.",
+    tags: ["Security", "ML", "Cloud"],
+    tech: ["Python", "Scikit-learn", "Flask", "AWS EC2", "ESP32"],
+    highlights: [
+      "Naive Bayes classifier achieving 90%+ phishing detection accuracy",
+      "ESP8266/ESP32 system blocking 85%+ deauth attacks",
+      "AWS EC2 honeypots for threat intelligence gathering",
+      "Lightweight WAF with SQLi/XSS protection and rate limiting",
+    ],
+    github: "https://github.com/05Atharva/ARTEMIS",
+    featured: true,
+  },
+
+  {
+    title: "Harvest-Health",
+    subtitle: "AI-Powered Crop Monitoring Rover",
+    description:
+      "IoT-enabled agricultural rover using CNN-based plant disease detection with cloud updates and automated farmer alerts.",
+    tags: ["ML", "IoT"],
+    tech: ["TensorFlow", "Keras", "OpenCV", "ThingSpeak", "Twilio"],
+    highlights: [
+      "CNN model with 90%+ accuracy for potato leaf disease detection",
+      "Custom rover with sensors for autonomous field monitoring",
+      "Real-time cloud data transmission via ThingSpeak",
+      "SMS alert system using Twilio API integration",
+    ],
+    github: "https://github.com/05Atharva/Harvest-Health",
+  },
+
+  {
+    title: "ResponseForge",
+    subtitle: "NIST-Based Incident Response Automation Platform",
+    description:
+      "Enterprise-grade React application that automates NIST SP 800-61 compliant incident response plans.",
+    tags: ["Security", "Web"],
+    tech: ["React.js", "JavaScript", "HTML/CSS"],
+    highlights: [
+      "NIST SP 800-61 compliant plan generation",
+      "90% reduction in manual IR planning time",
+      "PDF export in under 2 minutes",
+      "Validated by 92% of enterprise test users",
+    ],
+    github: "https://github.com/05Atharva/ResponseForge",
+  },
+
+  {
+    title: "Automotive Part QC Classifier",
+    subtitle: "Industrial AI Quality Control System",
+    description:
+      "Production-ready computer vision system for automated part inspection using transfer learning.",
+    tags: ["ML", "Industrial"],
+    tech: ["TensorFlow", "MobileNetV2", "OpenCV", "PyInstaller"],
+    highlights: [
+      "Transfer learning with MobileNetV2 for part classification",
+      "Reliable detection across multiple part variants",
+      "Packaged as .exe for factory floor deployment",
+      "Real-time defect detection pipeline",
+    ],
+  },
+
+  // -------------------------
+  // 🔥 NEW ROBOTICS PROJECTS
+  // -------------------------
+
+  {
+  title: "Autonomous Quadcopter (Delivery Application)",
+  subtitle: "Waypoint-Driven UAV with Real-Time Telemetry",
+  description:
+    "Autonomous quadcopter engineered for short-range payload delivery using CrossFlight FC and a custom low-cost telemetry module. Equipped with waypoint-based navigation and embedded control systems optimized for real-world deployment.",
+  tags: ["Robotics", "ML", "IoT", "UAV"],
+  tech: [
+    "CrossFlight FC",
+    "Waypoint Navigation",
+    "Telemetry Module",
+    "Embedded Systems",
+    "Mission Control"
+  ],
+  highlights: [
+    "Fully autonomous waypoint-driven flight system",
+    "Custom low-cost telemetry module with stable real-time link",
+    "CrossFlight FC integration for precision navigation",
+    "Designed for short-range delivery missions with optimized efficiency"
+  ],
+  github: ""
+},
+{
+  title: "3-Inch FPV Racing Drone",
+  subtitle: "Compact FPV System Optimized for Indoor & Tight-Spaces",
+  description:
+    "Lightweight and agile 3-inch FPV drone built using SpeedyBee Mini FC, optimized for confined-space flying. Tuned with refined PID loops ensuring stability, maneuverability, and efficient power handling.",
+  tags: ["Robotics", "UAV", "FPV"],
+  tech: ["SpeedyBee Mini FC", "FPV System", "PID Tuning", "Lightweight Frame"],
+  highlights: [
+    "Compact 3-inch FPV platform built for tight-space flying",
+    "Custom PID tuning to enhance responsiveness and stability",
+    "Optimized for power efficiency and controlled indoor maneuvering",
+    "Lightweight frame ensuring agile and precise flight"
+  ],
+  github: ""
+},
+{
+  title: "5-Inch FPV Racing Drone",
+  subtitle: "High-Performance FPV Racing Platform",
+  description:
+    "High-speed 5-inch FPV racing drone developed using SpeedyBee F405 V3 FC, optimized for competitive racing dynamics. Custom-tuned for agility, rapid acceleration, and precise directional control.",
+  tags: ["Robotics", "UAV", "FPV"],
+  tech: ["SpeedyBee F405 V3", "Racing Frame", "FPV System", "PID Optimization"],
+  highlights: [
+    "High-performance 5-inch racing drone for competitive events",
+    "Precision-tuned for speed, sharp cornering, and flight stability",
+    "Built using SpeedyBee F405 V3 for reliable and responsive control",
+    "Optimized flight stack for aggressive racing maneuvers"
+  ],
+  github: ""
+}
+
+];
+
 
   // 🔹 New skill model: level is a label, not a percent. No bars.
   const skills = {
-    security: [
-      {
-        name: 'Penetration Testing',
-        level: 'Advanced',
-        tools: ['Nmap', 'Burp Suite', 'Web Apps', 'Network'],
-      },
-      {
-        name: 'Network Security',
-        level: 'Advanced',
-        tools: ['CCNA Certified', 'Firewalls & WAF', 'Honeypots'],
-      },
-      {
-        name: 'Threat Detection',
-        level: 'Strong',
-        tools: ['SIEM', 'Log Analysis', 'Alert Tuning'],
-      },
-      {
-        name: 'Secure Development',
-        level: 'Strong',
-        tools: ['OWASP', 'MFA Implementation', 'Threat Modeling'],
-      },
-    ],
-    ml: [
-      {
-        name: 'Deep Learning',
-        level: 'Advanced',
-        tools: ['TensorFlow', 'Keras', 'CNNs'],
-      },
-      {
-        name: 'Classical ML',
-        level: 'Advanced',
-        tools: ['Scikit-learn', 'XGBoost', 'Random Forest'],
-      },
-      {
+  security: [
+    {
+      name: "Penetration Testing",
+      level: "ADVANCED",
+      tools: ["Nmap", "Burp Suite", "Web Apps", "Network"]
+    },
+    {
+      name: "Threat Detection",
+      level: "STRONG",
+      tools: ["SIEM", "Log Analysis", "Alert Tuning"]
+    },
+    {
+      name: "Network Security",
+      level: "ADVANCED",
+      tools: ["CCNA Certified", "Firewalls & WAF", "Honeypots"]
+    },
+    {
+      name: "Secure Development",
+      level: "STRONG",
+      tools: ["OWASP", "MFA Implementation", "Threat Modeling"]
+    }
+  ],
+
+  ml: [
+    {
+      name: "Deep Learning",
+      level: "ADVANCED",
+      tools: ["TensorFlow", "Keras", "CNNs"]
+    },
+    {
+      name: "Classical ML",
+      level: "ADVANCED",
+      tools: ["Scikit-learn", "XGBoost", "Random Forest"]
+    },
+    {
         name: 'Computer Vision',
         level: 'Strong',
         tools: ['OpenCV', 'MobileNetV2', 'YOLO'],
@@ -146,32 +208,79 @@ const Portfolio = () => {
         level: 'Strong',
         tools: ['Flask APIs', 'AWS EC2', 'Docker'],
       },
-    ],
-    engineering: [
-      {
-        name: 'Python Development',
-        level: 'Expert',
-        tools: ['Automation', 'Backend Services', 'Scripting'],
-      },
-      {
-        name: 'Cloud Infrastructure',
-        level: 'Strong',
-        tools: ['AWS EC2', 'Monitoring', 'Basic IaC'],
-      },
-      {
-        name: 'Web Development',
-        level: 'Strong',
-        tools: ['React', 'Flask', 'REST APIs'],
-      },
-      {
-        name: 'IoT & Embedded',
-        level: 'Strong',
-        tools: ['ESP32', 'Sensors', 'Firmware'],
-      },
-    ],
-  };
+  ],
 
-  const experience = {
+  engineering: [
+    {
+      name: "Python Development",
+      level: "ADVANCED",
+      tools: ["APIs", "Automation", "Backend"]
+    },
+    {
+      name: "Web Development",
+      level: "STRONG",
+      tools: ["React", "Flask", "REST APIs"]
+    },
+    {
+      name: "Cloud Infrastructure",
+      level: "INTERMEDIATE",
+      tools: ["AWS EC2", "ThingSpeak"]
+    },
+    {
+      name: "IoT & Embedded",
+      level: "STRONG",
+      tools: ["ESP32", "Sensors", "Firmware"]
+    }
+  ],
+
+  robotics: [
+    {
+      name: "Flight Controllers",
+      level: "ADVANCED",
+      tools: ["Pixhawk", "APM", "SpeedyBee"]
+    },
+    {
+      name: "Autonomous Navigation",
+      level: "STRONG",
+      tools: ["Waypoint Navigation", "Mission Planning", "Autonomous Control"]
+    },
+    {
+      name: "FPV Tuning & Dynamics",
+      level: "ADVANCED",
+      tools: ["PID Tuning", "FPV Systems", "Flight Dynamics"]
+    },
+    {
+      name: "Drone Systems Engineering",
+      level: "EXPERT",
+      tools: ["UAV Design", "Power Systems", "Embedded Integration"]
+    }
+  ]
+};
+
+
+  const experience = [
+  {
+    company: 'Team Vajra, MMCOE',
+    role: 'AI-ML Head – UAV & Drone Projects',
+    period: '2023 – Present',
+    achievements: [
+      'Managed end-to-end UAV development using Pixhawk, APM, and SpeedyBee flight controllers',
+      'Supervised flight tuning, testing, and integration of embedded and automation systems',
+      'Developed a compact 3-inch FPV racing drone optimized for confined-space flying',
+      'Designed and tuned a high-performance 5-inch FPV racing drone for competitive racing',
+      'Led AI/Autonomous navigation research for UAV applications',
+    ],
+    tech: [
+      'Pixhawk',
+      'APM',
+      'SpeedyBee',
+      'Autonomous Navigation',
+      'PID Tuning',
+      'Embedded Systems',
+      'UAV Dynamics',
+    ],
+  },
+  {
     company: 'Encrypta Inc.',
     role: 'R&D Intern',
     period: 'Dec 2024 - Mar 2025',
@@ -181,7 +290,11 @@ const Portfolio = () => {
       'Deployed multi-factor authentication reducing attack vectors by 70%',
       'Applied secure coding practices throughout the development lifecycle',
     ],
-  };
+    tech: ['Python', 'Node.js', 'Electron.js', 'HTTPS', 'WebSocket', 'MFA', 'Secure Coding'],
+  },
+];
+
+
 
   const certifications = [
     { name: 'Cisco Certified Network Associate (CCNA)', issuer: 'Cisco', date: 'May 2025' },
@@ -190,9 +303,17 @@ const Portfolio = () => {
   ];
 
   const achievements = [
-    { title: "CTF Winner - NigVanta'25", description: 'Capture The Flag Competition Champion' },
-    { title: 'Innovators Challenge 2k24', description: 'Winners - 24 Hour Hackathon' },
-  ];
+  { title: "CTF Winner - NigVanta'25", description: "Capture The Flag Competition Champion" },
+  { title: "Innovators Challenge 2k24", description: "24-Hour Hackathon Winners" },
+
+  // NEW
+  {
+    title: "World Rank 3 & AIR 2 – Technoxian Drone Racing 2025",
+    description: "Ranked among 32 international teams in global FPV drone racing competition",
+  },
+
+];
+
 
   // 🔹 Blogs: DefendTheCloud & CTF Chronicles
   const blogs = [
@@ -794,21 +915,22 @@ const Portfolio = () => {
                   </motion.h2>
 
                   <motion.div {...fadeInUp} className="flex flex-wrap gap-3 mb-8">
-                    {['all', 'security', 'ml', 'cloud', 'iot'].map((tag) => (
-                      <button
-                        key={tag}
-                        onClick={() => setFilterTag(tag)}
-                        className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                          filterTag === tag
-                            ? 'bg-cyan-500 text-white'
-                            : isDark
-                            ? 'bg-slate-800/50 text-gray-300 hover:bg-slate-700/50'
-                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                        }`}
-                      >
-                        {tag.charAt(0).toUpperCase() + tag.slice(1)}
-                      </button>
-                    ))}
+                    {['all', 'security', 'ml', 'cloud', 'iot', 'robotics'].map((tag) => (
+  <button
+    key={tag}
+    onClick={() => setFilterTag(tag)}
+    className={`px-4 py-2 rounded-lg font-medium transition-all ${
+      filterTag === tag
+        ? 'bg-cyan-500 text-white'
+        : isDark
+        ? 'bg-slate-800/50 text-gray-300 hover:bg-slate-700/50'
+        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+    }`}
+  >
+    {tag.charAt(0).toUpperCase() + tag.slice(1)}
+  </button>
+))}
+
                   </motion.div>
 
                   <motion.div
@@ -1064,166 +1186,112 @@ const Portfolio = () => {
             )}
 
             {/* EXPERIENCE */}
-            {activeSection === 'experience' && (
-              <motion.section
-                key="experience"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="min-h-screen py-20 px-4"
+            {/* EXPERIENCE */}
+{activeSection === 'experience' && (
+  <motion.section
+    key="experience"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    className="min-h-screen py-20 px-4"
+  >
+    <div className="max-w-5xl mx-auto">
+      <motion.h2
+        {...fadeInUp}
+        className={`text-4xl md:text-5xl font-bold mb-12 ${
+          isDark ? 'text-white' : 'text-gray-900'
+        }`}
+      >
+        Professional <span className="text-cyan-400">Experience</span>
+      </motion.h2>
+
+      {/* Loop Through All Experience Entries */}
+      {experience.map((exp, expIdx) => (
+        <motion.div
+          key={expIdx}
+          {...fadeInUp}
+          transition={{ delay: expIdx * 0.2 }}
+          className={`p-8 rounded-xl mb-12 ${
+            isDark
+              ? 'bg-slate-800/50 border border-cyan-500/20'
+              : 'bg-white border border-gray-200'
+          } backdrop-blur`}
+        >
+          {/* Header */}
+          <div className="flex items-start space-x-4 mb-6">
+            <div className="p-3 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-lg">
+              <Briefcase className="text-white" size={24} />
+            </div>
+            <div className="flex-1">
+              <h3
+                className={`text-2xl font-bold ${
+                  isDark ? 'text-white' : 'text-gray-900'
+                }`}
               >
-                <div className="max-w-5xl mx-auto">
-                  <motion.h2
-                    {...fadeInUp}
-                    className={`text-4xl md:text-5xl font-bold mb-12 ${
-                      isDark ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
-                    Professional <span className="text-cyan-400">Experience</span>
-                  </motion.h2>
+                {exp.role}
+              </h3>
+              <p className="text-cyan-400 font-semibold">{exp.company}</p>
+              <p
+                className={`text-sm ${
+                  isDark ? 'text-gray-400' : 'text-gray-600'
+                }`}
+              >
+                {exp.period}
+              </p>
+            </div>
+          </div>
 
-                  <motion.div
-                    {...fadeInUp}
-                    className={`p-8 rounded-xl ${
-                      isDark
-                        ? 'bg-slate-800/50 border border-cyan-500/20'
-                        : 'bg-white border border-gray-200'
-                    } backdrop-blur`}
-                  >
-                    <div className="flex items-start space-x-4 mb-6">
-                      <div className="p-3 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-lg">
-                        <Briefcase className="text-white" size={24} />
-                      </div>
-                      <div className="flex-1">
-                        <h3
-                          className={`text-2xl font-bold ${
-                            isDark ? 'text-white' : 'text-gray-900'
-                          }`}
-                        >
-                          {experience.role}
-                        </h3>
-                        <p className="text-cyan-400 font-semibold">
-                          {experience.company}
-                        </p>
-                        <p
-                          className={`text-sm ${
-                            isDark ? 'text-gray-400' : 'text-gray-600'
-                          }`}
-                        >
-                          {experience.period}
-                        </p>
-                      </div>
-                    </div>
+          {/* Key Contributions */}
+          <h4
+            className={`font-semibold ${
+              isDark ? 'text-gray-300' : 'text-gray-700'
+            } mb-3`}
+          >
+            Key Contributions:
+          </h4>
 
-                    <div className="space-y-4">
-                      <h4
-                        className={`font-semibold ${
-                          isDark ? 'text-gray-300' : 'text-gray-700'
-                        } mb-3`}
-                      >
-                        Key Contributions:
-                      </h4>
-                      {experience.achievements.map((achievement, idx) => (
-                        <motion.div
-                          key={idx}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: idx * 0.1 }}
-                          className="flex items-start space-x-3"
-                        >
-                          <span className="text-cyan-400 mt-1">▹</span>
-                          <p
-                            className={`${
-                              isDark ? 'text-gray-300' : 'text-gray-700'
-                            }`}
-                          >
-                            {achievement}
-                          </p>
-                        </motion.div>
-                      ))}
-                    </div>
+          {exp.achievements.map((achievement, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              className="flex items-start space-x-3 mb-2"
+            >
+              <span className="text-cyan-400 mt-1">▹</span>
+              <p
+                className={`${
+                  isDark ? 'text-gray-300' : 'text-gray-700'
+                }`}
+              >
+                {achievement}
+              </p>
+            </motion.div>
+          ))}
 
-                    <div className="mt-6 pt-6 border-t border-cyan-500/20">
-                      <div className="flex flex-wrap gap-2">
-                        {[
-                          'Python',
-                          'Node.js',
-                          'Electron.js',
-                          'HTTPS',
-                          'WebSocket',
-                          'MFA',
-                          'Secure Coding',
-                        ].map((tech, idx) => (
-                          <span
-                            key={idx}
-                            className={`px-3 py-1 text-sm ${
-                              isDark
-                                ? 'bg-slate-700/50 text-gray-300'
-                                : 'bg-gray-100 text-gray-700'
-                            } rounded`}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
+          {/* Tech Pills */}
+          {exp.tech && (
+            <div className="mt-6 pt-6 border-t border-cyan-500/20 flex flex-wrap gap-2">
+              {exp.tech.map((tag, idx) => (
+                <span
+                  key={idx}
+                  className={`px-3 py-1 text-sm rounded ${
+                    isDark
+                      ? 'bg-slate-700/50 text-gray-300'
+                      : 'bg-gray-100 text-gray-700'
+                  }`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </motion.div>
+      ))}
+    </div>
+  </motion.section>
+)}
 
-                  <motion.div
-                    {...fadeInUp}
-                    transition={{ delay: 0.2 }}
-                    className="mt-12"
-                  >
-                    <h3
-                      className={`text-2xl font-bold mb-6 ${
-                        isDark ? 'text-white' : 'text-gray-900'
-                      }`}
-                    >
-                      Education
-                    </h3>
-                    <div
-                      className={`p-6 rounded-xl ${
-                        isDark
-                          ? 'bg-slate-800/50 border border-purple-500/20'
-                          : 'bg-white border border-gray-200'
-                      }`}
-                    >
-                      <div className="flex items-start space-x-4">
-                        <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg">
-                          <Code className="text-white" size={24} />
-                        </div>
-                        <div>
-                          <h4
-                            className={`text-xl font-bold ${
-                              isDark ? 'text-white' : 'text-gray-900'
-                            }`}
-                          >
-                            Bachelor of Engineering
-                          </h4>
-                          <p className="text-purple-400 font-semibold">
-                            Electronics and Telecommunication
-                          </p>
-                          <p
-                            className={`text-sm ${
-                              isDark ? 'text-gray-400' : 'text-gray-600'
-                            }`}
-                          >
-                            Marathwada Mitra Mandal&apos;s College of Engineering, Pune
-                          </p>
-                          <p
-                            className={`text-sm ${
-                              isDark ? 'text-gray-400' : 'text-gray-600'
-                            }`}
-                          >
-                            Nov 2022 - Jun 2026 • CGPA: 9.02/10.0
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.section>
-            )}
 
             {/* CONTACT */}
             {activeSection === 'contact' && (
