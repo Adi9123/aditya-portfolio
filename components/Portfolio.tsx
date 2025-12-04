@@ -72,9 +72,11 @@ const Portfolio = () => {
     "Soft Skills": ["Team Leadership", "Project Management", "Problem Solving", "Technical Documentation"]
   };
 
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToSection = (id: string) => {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
+
 
   return (
     <div className="min-h-screen bg-black text-gray-100 font-sans">
