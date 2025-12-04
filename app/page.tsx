@@ -139,7 +139,7 @@ export default function Portfolio() {
 
           {/* Email — FIXED To: Field */}
           <a
-            href="mailto:shindeadi0123@mail.com"
+            href="mailto:shindeadi0123@gmail.com"
             className="p-3 bg-gray-800 rounded-full hover:bg-purple-600 transition-all flex items-center justify-center"
             title="Email me"
           >
@@ -241,7 +241,7 @@ export default function Portfolio() {
 
           {/* Email Button */}
           <a
-            href="mailto:shindeadi0123@mail.com"
+            href="mailto:shindeadi0123@gmail.com"
             className="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-xl font-semibold flex items-center justify-center gap-2"
           >
             <Mail size={20} />
