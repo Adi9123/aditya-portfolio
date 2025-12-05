@@ -1,23 +1,26 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Mail, Linkedin, FileText, Menu, X } from "lucide-react";
+import { Mail, Linkedin, FileText, Menu, X, Briefcase } from "lucide-react";
 
-/* Drive links you provided */
+/* Drive links and resume paths (your provided links) */
 const DRIVE_LINK_VIDEO =
   "https://drive.google.com/drive/folders/1w2jiOJnn6IRJDB_DMzEw-r3A4xE9LFUc?usp=sharing";
 const DRIVE_LINK_3D =
   "https://drive.google.com/drive/folders/1FlDev0bTpT8CeDiiyRBwA-dk4_ykIKRQ?usp=sharing";
 
-/* Resume file paths in public/ (you said you'll upload them) */
 const RESUME_UAV = "/resume-1.pdf";
 const RESUME_ELECTRONIC = "/resume-2.pdf";
 
 const scrollToSection = (id: string) => {
   const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth" });
-  }
+  if (el) el.scrollIntoView({ behavior: "smooth" });
+};
+
+type ExpItem = {
+  role: string;
+  period: string;
+  detail: string;
 };
 
 export default function HomePage(): JSX.Element {
@@ -37,13 +40,12 @@ export default function HomePage(): JSX.Element {
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(email);
       } else {
-        // fallback
-        const textarea = document.createElement("textarea");
-        textarea.value = email;
-        document.body.appendChild(textarea);
-        textarea.select();
+        const ta = document.createElement("textarea");
+        ta.value = email;
+        document.body.appendChild(ta);
+        ta.select();
         document.execCommand("copy");
-        document.body.removeChild(textarea);
+        document.body.removeChild(ta);
       }
       setToastText(email);
     } catch {
@@ -53,39 +55,71 @@ export default function HomePage(): JSX.Element {
   };
 
   const aboutSummary =
-    "UAV Systems Engineer and FPV Drone Pilot with hands-on experience in autonomous quadcopters, flight tuning, telemetry systems, and CAD-based design. Ranked World #3 (Technoxian 2025) and experienced in Pixhawk, SpeedyBee, MAVLink, Mission Planner, and Fusion 360.";
+    "UAV Systems Engineer and FPV Drone Pilot with hands-on experience in autonomous quadcopters, flight tuning, telemetry systems and CAD-based design. Skilled in Pixhawk, SpeedyBee, MAVLink, Mission Planner and Fusion 360. Led Team Vajra to World Rank 3 (Technoxian 2025).";
 
   const projects = [
     {
-      title: "Autonomous Quadcopter",
-      detail: "Waypoint navigation drone using CrossFlight FC + MAVLink telemetry.",
+      title: "Autonomous Quadcopter — Delivery Application",
+      detail:
+        "Built an autonomous delivery drone using CrossFlight flight controller and MAVLink telemetry. Implemented waypoint navigation and mission execution via Mission Planner.",
+    },
+    {
+      title: "Low-Cost HC-12 Telemetry Kit for UAVs",
+      detail:
+        "Developed a budget telemetry system using HC-12 (433 MHz), integrated with Pixhawk to stream GPS, battery and attitude data with reliable LOS range up to ~1 km.",
+    },
+    {
+      title: "MBT-Based ADAS System (Model-Based Testing)",
+      detail:
+        "Model-based design of ADAS modules (lane detection, ACC, obstacle detection) in MATLAB/Simulink with MIL/SIL workflows and code-generation-ready models.",
     },
     {
       title: "5-Inch FPV Racing Drone",
-      detail: "SpeedyBee F405 V3 platform — performance tuned with custom PID.",
+      detail:
+        "Performance-tuned 5-inch racing drone on SpeedyBee F405 V3; advanced PID tuning for agility and precision.",
     },
     {
-      title: "3-Inch Indoor Micro Drone",
-      detail: "Lightweight indoor micro optimized for tight-space maneuvering.",
-    },
-    {
-      title: "Material Handling Bot",
-      detail: "ESP32-based robot with PID motor control & 4-DOF arm.",
+      title: "3-Inch Indoor Micro FPV Drone",
+      detail:
+        "Lightweight 3-inch drone optimized for tight indoor flying with low-latency control.",
     },
     {
       title: "Water Surface Cleaning Bot",
-      detail: "Fusion 360 designed autonomous cleaning bot — SIH internal winner.",
+      detail:
+        "Fusion 360–designed autonomous water-surface cleaning bot — SIH internal winner.",
+    },
+    {
+      title: "Material Handling Bot with 4-DOF Arm",
+      detail:
+        "ESP32-based robot with PID motor control, ultrasonic obstacle detection and smartphone control for warehouse tasks.",
     },
     {
       title: "Pneumatic Switch Automation",
-      detail: "Pneumatic automation systems for utility vehicles (AutoCAD / Fusion 360).",
+      detail:
+        "Designed pneumatic automation systems for utility vehicles using AutoCAD and Fusion 360.",
     },
+  ];
+
+  const experience: ExpItem[] = [
+    {
+      role: "Team Lead – UAV & Drone Projects, Team Vajra (MMCOE)",
+      period: "2023 – Present",
+      detail:
+        "Led UAV team: managed end-to-end UAV development (Pixhawk/APM/SpeedyBee), flight tuning, autonomous missions and team mentoring. Piloted to World Rank 3 at Technoxian Drone Racing 2025.",
+    },
+    {
+      role: "Design & Automation Intern – VVS System and Solution",
+      period: "Jan 2025 – Apr 2025",
+      detail:
+        "Designed CAD models and automated pneumatic switch systems for utility vehicles; improved design-for-maintenance workflows using Fusion 360 & AutoCAD.",
+    },
+    
   ];
 
   const achievements = [
     "World Rank 3 & AIR 2 — Technoxian Drone Racing 2025",
     "1st Place — Uddan 2K23 Drone Competition",
-    "2nd Place — MMCOE Dexterity 2K24",
+    "2nd Place — MMCOE Dexterity 2K24 (Drone Simulator)",
     "Level 2 Cleared — AeroGCS Global Competition",
     "1st Place (Internal) — Smart India Hackathon 2024",
   ];
@@ -97,25 +131,25 @@ export default function HomePage(): JSX.Element {
         "FPV Racing",
         "PID Tuning",
         "Autonomous Navigation",
-        "Telemetry",
+        "Telemetry Integration",
         "Mission Planner",
+        "Betaflight",
         "Pixhawk",
         "APM",
-        "Betaflight",
         "SpeedyBee",
       ],
     },
     {
       title: "Design & CAD",
-      items: ["Fusion 360", "AutoCAD", "3D Modelling"],
+      items: ["Fusion 360", "AutoCAD", "3D Modelling", "Mechanical Design"],
     },
     {
       title: "Embedded Systems",
       items: ["ESP32", "Arduino", "Sensors", "PCB Handling"],
     },
     {
-      title: "Programming",
-      items: ["Python", "C/C++", "MATLAB", "Linux"],
+      title: "Programming & Tools",
+      items: ["Python", "C/C++", "MATLAB", "Linux", "Arduino IDE"],
     },
   ];
 
@@ -137,9 +171,10 @@ export default function HomePage(): JSX.Element {
 
           <div className="hidden md:flex gap-8">
             <button onClick={() => scrollToSection("projects")}>Projects</button>
+            <button onClick={() => scrollToSection("experience")}>Experience</button>
             <button onClick={() => scrollToSection("achievements")}>Achievements</button>
             <button onClick={() => scrollToSection("skills")}>Skills</button>
-            <button onClick={() => scrollToSection("contact")}>Contact</button>
+            <button onClick={() => scrollToSection("media")}>Media</button>
           </div>
 
           <button className="md:hidden" onClick={() => setMobileMenuOpen((s) => !s)}>
@@ -151,9 +186,10 @@ export default function HomePage(): JSX.Element {
       {mobileMenuOpen && (
         <div className="md:hidden bg-slate-900 border-b border-slate-700 p-4 space-y-3">
           <button onClick={() => scrollToSection("projects")}>Projects</button>
+          <button onClick={() => scrollToSection("experience")}>Experience</button>
           <button onClick={() => scrollToSection("achievements")}>Achievements</button>
           <button onClick={() => scrollToSection("skills")}>Skills</button>
-          <button onClick={() => scrollToSection("contact")}>Contact</button>
+          <button onClick={() => scrollToSection("media")}>Media</button>
         </div>
       )}
 
@@ -201,26 +237,27 @@ export default function HomePage(): JSX.Element {
             </div>
           </div>
 
-          <aside className="bg-slate-800/60 p-6 rounded-xl border border-slate-700">
+          {/* Right: Contact + compact experience card */}
+          <aside id="contact-section" className="bg-slate-800/60 p-6 rounded-xl border border-slate-700">
             <h3 className="text-xl font-bold mb-2">Contact</h3>
-            <div className="flex flex-col gap-3">
-              <button
-                onClick={copyEmail}
-                className="w-full inline-flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-lg"
-              >
+
+            <div className="flex flex-col gap-3 mb-4">
+              <button onClick={copyEmail} className="w-full inline-flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-lg">
                 <Mail size={16} /> shindeadi0123@gmail.com
               </button>
 
-              <a
-                href="https://www.linkedin.com/in/adityashinde9"
-                target="_blank"
-                rel="noreferrer"
-                className="w-full inline-flex items-center gap-2 px-4 py-2 bg-blue-700 rounded-lg"
-              >
+              <a href="https://www.linkedin.com/in/adityashinde9" target="_blank" rel="noreferrer" className="w-full inline-flex items-center gap-2 px-4 py-2 bg-blue-700 rounded-lg">
                 <Linkedin size={16} /> LinkedIn
               </a>
+            </div>
 
-               
+            {/* Compact Experience Card (top-right) */}
+            <div className="mt-4 p-4 bg-slate-900/40 rounded-lg border border-slate-700">
+              <h4 className="font-semibold mb-2 flex items-center gap-2">
+                <Briefcase className="w-4 h-4" /> Experience Snapshot
+              </h4>
+              <p className="text-sm text-slate-300 mb-2">Team Lead — UAV & Drone Projects (2023–Present)</p>
+              <p className="text-xs text-slate-400">Also: Design & Automation Intern; Embedded Systems projects.</p>
             </div>
           </aside>
         </div>
@@ -241,8 +278,29 @@ export default function HomePage(): JSX.Element {
         </div>
       </section>
 
+      {/* experience (cards only) */}
+      <section id="experience" className="py-12 px-6">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-8">Experience</h2>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {experience.map((e, i) => (
+              <div key={i} className="p-6 bg-slate-800/50 border border-slate-700 rounded-xl">
+                <div className="flex items-start justify-between mb-3">
+                  <div>
+                    <h3 className="font-semibold text-lg">{e.role}</h3>
+                    <p className="text-sm text-slate-400">{e.period}</p>
+                  </div>
+                </div>
+                <p className="text-slate-300 text-sm">{e.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* achievements */}
-      <section id="achievements" className="py-12 px-6">
+      <section id="achievements" className="py-12 px-6 bg-slate-900/50">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-6">Achievements</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -257,7 +315,7 @@ export default function HomePage(): JSX.Element {
       </section>
 
       {/* skills */}
-      <section id="skills" className="py-12 px-6 bg-slate-900/50">
+      <section id="skills" className="py-12 px-6">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-6">Skills</h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -277,8 +335,8 @@ export default function HomePage(): JSX.Element {
         </div>
       </section>
 
-      {/* media links */}
-      <section id="contact" className="py-16 px-6 text-center">
+      {/* media */}
+      <section id="media" className="py-16 px-6 text-center">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Media</h2>
           <p className="text-slate-400 mb-6">3D models and flight footage.</p>
