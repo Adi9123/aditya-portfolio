@@ -1,268 +1,281 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, Phone, ExternalLink, ChevronDown } from 'lucide-react';
+import { Mail, Linkedin, FileText, Menu, X } from 'lucide-react';
 
-const Portfolio = () => {
-  const [scrollY, setScrollY] = useState(0);
-  const [activeSection, setActiveSection] = useState('hero');
+export default function EnhancedPortfolio() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [toastText, setToastText] = useState('');
+
+  const copyEmail = async () => {
+    const email = 'shindeadi0123@gmail.com';
+    try {
+      if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(email);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = email;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+      setToastText(email);
+    } catch (err) {
+      setToastText('Failed to copy — ' + email);
+    }
+    setTimeout(() => setToastText(''), 3000);
+  };
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : 'unset';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
 
+  // Projects exactly as on live site
   const projects = [
     {
-      category: "UAV / Autonomy",
-      title: "Autonomous Quadcopter",
-      emoji: "🛰️",
-      description: "Autonomous delivery drone using CrossFlight flight controller and custom low-cost telemetry module, enabling waypoint navigation and real-time mission control for short-range logistics.",
-      tags: ["CrossFlight FC", "Waypoint Navigation", "MAVLink Telemetry", "Mission Planner", "Autonomous Flight"]
+      icon: '🛰️',
+      category: 'UAV / Autonomy',
+      title: 'Autonomous Quadcopter',
+      description: 'Autonomous delivery drone using CrossFlight flight controller and MAVLink telemetry for waypoint navigation.',
+      tags: ['CrossFlight', 'MAVLink', 'Mission Planner', 'Pixhawk', 'Autonomous'],
     },
     {
-      category: "FPV / Racing",
-      title: "5-Inch FPV Racing Drone",
-      emoji: "🏁",
-      description: "High-performance 5-inch racing drone built on SpeedyBee F405 V3 flight controller, custom-tuned for rapid acceleration, sharp cornering, and stable control in competitive racing environments.",
-      tags: ["SpeedyBee F405 V3", "PID Tuning", "FPV System", "Racing Frame", "BetaFlight"]
+      icon: '🏁',
+      category: 'FPV / Racing',
+      title: '5-Inch FPV Racing Drone',
+      description: 'High-performance racing drone built on SpeedyBee F405 V3 with custom PID tuning.',
+      tags: ['SpeedyBee F405', 'PID Tuning', 'FPV', 'Betaflight'],
     },
     {
-      category: "FPV / Micro",
-      title: "3-Inch Micro FPV Drone",
-      emoji: "⚡",
-      description: "Lightweight 3-inch FPV platform engineered for indoor and tight-space flying, featuring optimized power efficiency, low-latency response, and precise maneuvering capabilities.",
-      tags: ["SpeedyBee Mini FC", "Indoor Flight", "PID Tuning", "Lightweight Frame", "Efficient Power"]
+      icon: '⚡',
+      category: 'FPV / Micro',
+      title: '3-Inch Indoor Micro Drone',
+      description: 'Lightweight 3-inch drone optimized for tight indoor flying with efficient power design.',
+      tags: ['Micro Drone', 'Indoor FPV', 'SpeedyBee', 'Lightweight'],
     },
     {
-      category: "Robotics / Automation",
-      title: "Line-Following Material Handling Bot",
-      emoji: "🤖",
-      description: "ESP32-based autonomous robot with IR sensor array, PID motor control, 4-DOF robotic arm controlled via smartphone, and ultrasonic obstacle detection for warehouse operations.",
-      tags: ["ESP32", "PID Control", "Wi-Fi/Bluetooth", "Robotic Arm", "Autonomous Navigation"]
+      icon: '🤖',
+      category: 'Robotics / Automation',
+      title: 'Material Handling Bot',
+      description: 'ESP32-based robot with obstacle detection, PID motor control & robotic arm.',
+      tags: ['ESP32', 'PID', 'Navigation', 'Automation'],
     },
     {
-      category: "Environmental / IoT",
-      title: "Autonomous Water Surface Cleaning Bot",
-      emoji: "🌊",
-      description: "Autonomous surface cleaning bot designed in Fusion 360 with real-time mobile control interface. Secured Rank 1 in Internal Smart India Hackathon for eco-friendly automation innovation.",
-      tags: ["Fusion 360", "Mobile Control", "SIH Winner", "Eco-Friendly", "Automation"]
+      icon: '🌊',
+      category: 'Environmental / IoT',
+      title: 'Water Surface Cleaning Bot',
+      description: 'Fusion 360–designed autonomous cleaning bot that won SIH Internal Round.',
+      tags: ['Fusion 360', 'IoT', 'SIH Winner'],
     },
     {
-      category: "Design / CAD",
-      title: "Pneumatic Switch Automation System",
-      emoji: "⚙️",
-      description: "Designed and automated pneumatic switch systems for utility vehicles using AutoCAD and Fusion 360, improving operational efficiency and maintenance workflows.",
-      tags: ["AutoCAD", "Fusion 360", "Pneumatic Systems", "Industrial Design", "Automation"]
-    }
+      icon: '⚙️',
+      category: 'Design / CAD',
+      title: 'Pneumatic Switch Automation',
+      description: 'Automated pneumatic switch systems for utility vehicles using AutoCAD & Fusion 360.',
+      tags: ['Fusion 360', 'AutoCAD', 'Pneumatics'],
+    },
   ];
 
+  // Achievements exactly as on live site
   const achievements = [
-    { title: "World Rank 3 & AIR 2", event: "Technoxian Drone Racing 2025", detail: "32 international teams" },
-    { title: "1st Place", event: "Uddan 2K23 Drone Competition", detail: "College Championship" },
-    { title: "2nd Place", event: "MMCOE Dexterity 2K24", detail: "Drone Racing Simulator" },
-    { title: "Level 2 Cleared", event: "AeroGCS Global Competition", detail: "International Event" },
-    { title: "1st Place (Internal)", event: "Smart India Hackathon 2024", detail: "Water Cleaning Bot" }
+    { title: 'World Rank 3 & AIR 2', event: 'Technoxian Drone Racing 2025', detail: 'Among 32 international teams' },
+    { title: '1st Place', event: 'Uddan 2K23 Drone Competition', detail: 'College Championship' },
+    { title: '2nd Place', event: 'MMCOE Dexterity 2K24', detail: 'Drone Racing Simulator' },
+    { title: 'Level 2 Cleared', event: 'AeroGCS Global Competition', detail: 'International Event' },
+    { title: '1st Place (Internal)', event: 'Smart India Hackathon 2024', detail: 'Water Cleaning Bot' },
   ];
 
-  const skills = {
-    "UAV & Drone Systems": ["FPV Drone Racing", "Flight Tuning", "Autonomous Navigation", "Telemetry Integration", "Mission Planner", "BetaFlight", "Pixhawk", "APM", "SpeedyBee", "CrossFlight"],
-    "Design & Automation": ["AutoCAD", "Fusion 360", "Pneumatic Systems", "Mechanical Design", "CAD Modeling"],
-    "Embedded Systems": ["ESP32", "Arduino", "Microcontrollers", "Sensors & Actuators", "Circuit Design", "PCB Handling"],
-    "Programming & Tools": ["Python", "C/C++", "MATLAB", "Git", "Linux", "Arduino IDE", "MAVLink"],
-    "Soft Skills": ["Team Leadership", "Project Management", "Problem Solving", "Technical Documentation"]
-  };
-
-  const scrollToSection = (id: string) => {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
+  // Skills exactly as on live site
+  const skillCategories = [
+    {
+      title: 'UAV & Drone Systems',
+      skills: ['FPV Racing', 'PID Tuning', 'Autonomous Navigation', 'Telemetry', 'Mission Planner', 'Betaflight', 'Pixhawk', 'APM', 'SpeedyBee'],
+    },
+    { title: 'Design & CAD', skills: ['Fusion 360', 'AutoCAD', 'Mechanical Design'] },
+    { title: 'Embedded Systems', skills: ['ESP32', 'Arduino', 'Sensors', 'PCB Handling'] },
+    { title: 'Programming', skills: ['Python', 'C/C++', 'MATLAB', 'Linux'] },
+  ];
 
   return (
-    <div className="min-h-screen bg-black text-gray-100 font-sans">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-800">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            AS
-          </div>
-          <div className="flex gap-6 items-center">
-            <button onClick={() => scrollToSection('projects')} className="hover:text-blue-400 transition-colors">Projects</button>
-            <button onClick={() => scrollToSection('achievements')} className="hover:text-blue-400 transition-colors">Achievements</button>
-            <button onClick={() => scrollToSection('skills')} className="hover:text-blue-400 transition-colors">Skills</button>
-            <button onClick={() => scrollToSection('contact')} className="hover:text-blue-400 transition-colors">Contact</button>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+      {/* Toast */}
+      {toastText && (
+        <div className="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in">
+          {toastText}
+        </div>
+      )}
+
+      {/* Nav */}
+      <nav className="fixed top-0 w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              Aditya Shinde
+            </div>
+
+            <div className="hidden md:flex space-x-8">
+              <a href="#projects" className="hover:text-blue-400 transition-colors">Projects</a>
+              <a href="#achievements" className="hover:text-blue-400 transition-colors">Achievements</a>
+              <a href="#skills" className="hover:text-blue-400 transition-colors">Skills</a>
+              <a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a>
+            </div>
+
+            <button
+              className="md:hidden p-2"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-slate-900 border-t border-slate-700">
+            <div className="px-4 py-4 space-y-3">
+              <a href="#projects" className="block py-2 hover:text-blue-400" onClick={() => setMobileMenuOpen(false)}>Projects</a>
+              <a href="#achievements" className="block py-2 hover:text-blue-400" onClick={() => setMobileMenuOpen(false)}>Achievements</a>
+              <a href="#skills" className="block py-2 hover:text-blue-400" onClick={() => setMobileMenuOpen(false)}>Skills</a>
+              <a href="#contact" className="block py-2 hover:text-blue-400" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+            </div>
+          </div>
+        )}
       </nav>
 
-      {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex flex-col justify-center items-center px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/20 to-black"></div>
-        <div className="relative z-10 text-center max-w-4xl">
-          <div className="mb-6 inline-block">
-            <div className="text-7xl mb-4">👨‍✈️</div>
+      {/* Hero */}
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-slate-800">
+                <img src="/profile.jpg" alt="Aditya Shinde - Profile" className="w-full h-full object-cover" />
+              </div>
+            </div>
+
+            <div className="text-center md:text-left max-w-2xl">
+              <div className="text-5xl mb-4">👨‍✈️</div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+                Hi, I'm <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Aditya Shinde</span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-blue-400 font-semibold mb-4">UAV Systems Engineer | FPV Drone Pilot</p>
+              <p className="text-lg text-slate-300 mb-8">World Rank 3 FPV Pilot • Vice-Captain RC Drone Club • Autonomous Aerial Systems Developer</p>
+
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                <a href="/resume-uav.pdf" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+                  <FileText size={20} /> Resume – UAV Engineer
+                </a>
+                <a href="/resume-electronics.pdf" className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors">
+                  <FileText size={20} /> Resume – Electronics
+                </a>
+              </div>
+            </div>
           </div>
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-pulse">
-            Hi, I'm Aditya Shinde.
-          </h1>
-          <p className="text-2xl md:text-3xl text-gray-300 mb-4 font-light">
-            UAV Systems Engineer | FPV Drone Pilot
-          </p>
-          <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
-            World Rank 3 in FPV Racing • Vice-Captain RC Drone Club • Building autonomous aerial systems with precision and passion
-          </p>
-          <div className="flex gap-4 justify-center mb-12">
-            <a href="https://www.linkedin.com/in/adityashinde9" target="_blank" rel="noopener noreferrer" className="p-3 bg-gray-800 hover:bg-blue-600 rounded-full transition-all hover:scale-110">
-              <Linkedin size={24} />
-            </a>
-            <a href="mailto:shindeadi0123@mail.com" className="p-3 bg-gray-800 hover:bg-purple-600 rounded-full transition-all hover:scale-110">
-              <Mail size={24} />
-            </a>
-            <a href="tel:+918626080604" className="p-3 bg-gray-800 hover:bg-green-600 rounded-full transition-all hover:scale-110">
-              <Phone size={24} />
-            </a>
-          </div>
-          <button onClick={() => scrollToSection('projects')} className="animate-bounce">
-            <ChevronDown size={32} className="text-gray-400" />
-          </button>
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-6 max-w-6xl mx-auto">
-        <h2 className="text-5xl font-bold mb-4 text-center">Things I've built.</h2>
-        <p className="text-gray-400 text-center mb-16 text-lg">
-          A mix of UAV systems, FPV racing drones, autonomous robots, and real-world engineering work.
-        </p>
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, idx) => (
-            <div 
-              key={idx}
-              className="group bg-gray-900/50 rounded-2xl p-8 border border-gray-800 hover:border-blue-500 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
-            >
-              <div className="flex items-start gap-4 mb-4">
-                <div className="text-5xl">{project.emoji}</div>
-                <div className="flex-1">
-                  <div className="text-xs text-blue-400 uppercase tracking-wider mb-2 font-semibold">{project.category}</div>
-                  <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors">{project.title}</h3>
+      {/* Projects */}
+      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">Things I've Built</h2>
+          <p className="text-center text-slate-400 mb-12">UAV systems, FPV drones & embedded robotics</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, idx) => (
+              <div key={idx} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-blue-500 transition-all hover:scale-105">
+                <div className="text-4xl mb-4">{project.icon}</div>
+                <div className="text-sm text-blue-400 mb-2">{project.category}</div>
+                <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+                <p className="text-slate-300 mb-4">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag, i) => (
+                    <span key={i} className="px-3 py-1 bg-slate-700 text-xs rounded-full">{tag}</span>
+                  ))}
                 </div>
               </div>
-              <p className="text-gray-300 mb-6 leading-relaxed">{project.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag, i) => (
-                  <span key={i} className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm hover:bg-blue-600 transition-colors">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Achievements Section */}
-      <section id="achievements" className="py-20 px-6 max-w-6xl mx-auto">
-        <h2 className="text-5xl font-bold mb-4 text-center">Achievements.</h2>
-        <p className="text-gray-400 text-center mb-16 text-lg">
-          International rankings, competition wins, and recognition in UAV systems.
-        </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {achievements.map((achievement, idx) => (
-            <div key={idx} className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700 hover:border-purple-500 transition-all hover:transform hover:scale-105">
-              <div className="text-3xl mb-3">🏆</div>
-              <h3 className="text-xl font-bold mb-2 text-blue-400">{achievement.title}</h3>
-              <p className="text-gray-300 font-medium mb-1">{achievement.event}</p>
-              <p className="text-gray-500 text-sm">{achievement.detail}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="py-20 px-6 max-w-6xl mx-auto">
-        <h2 className="text-5xl font-bold mb-4 text-center">Skills & Expertise.</h2>
-        <p className="text-gray-400 text-center mb-16 text-lg">
-          Technical capabilities across UAV systems, embedded engineering, and automation.
-        </p>
-        <div className="space-y-8">
-          {Object.entries(skills).map(([category, items], idx) => (
-            <div key={idx} className="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
-              <h3 className="text-2xl font-bold mb-4 text-blue-400">{category}</h3>
-              <div className="flex flex-wrap gap-3">
-                {items.map((skill, i) => (
-                  <span key={i} className="px-4 py-2 bg-gray-800 text-gray-200 rounded-lg hover:bg-blue-600 transition-all hover:scale-105 cursor-default">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="py-20 px-6 max-w-6xl mx-auto">
-        <h2 className="text-5xl font-bold mb-16 text-center">Experience.</h2>
-        <div className="space-y-8">
-          <div className="bg-gray-900/50 rounded-xl p-8 border border-gray-800 hover:border-blue-500 transition-all">
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <h3 className="text-2xl font-bold text-blue-400">Team Lead – UAV & Drone Projects</h3>
-                <p className="text-xl text-gray-300">Team Vajra, MMCOE</p>
-              </div>
-              <span className="text-gray-400">2023 – Present</span>
-            </div>
-            <ul className="space-y-2 text-gray-300">
-              <li>• Led drone team to World Rank 3 in Technoxian FPV racing competition</li>
-              <li>• Managed end-to-end UAV development using Pixhawk, APM, and SpeedyBee flight controllers</li>
-              <li>• Supervised flight tuning, testing, and integration of embedded systems</li>
-            </ul>
-          </div>
-          <div className="bg-gray-900/50 rounded-xl p-8 border border-gray-800 hover:border-purple-500 transition-all">
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <h3 className="text-2xl font-bold text-purple-400">Design and Automation Intern</h3>
-                <p className="text-xl text-gray-300">VVS System and Solution</p>
-              </div>
-              <span className="text-gray-400">Jan 2025 – Apr 2025</span>
-            </div>
-            <ul className="space-y-2 text-gray-300">
-              <li>• Developed precise CAD models using AutoCAD and Fusion 360</li>
-              <li>• Designed and automated pneumatic switch systems for utility vehicles</li>
-            </ul>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-5xl font-bold mb-6">Let's Connect.</h2>
-        <p className="text-xl text-gray-400 mb-12">
-          Interested in UAV systems, FPV racing, or collaboration opportunities? Let's talk.
-        </p>
-        <div className="flex flex-col md:flex-row gap-6 justify-center">
-          <a href="mailto:shindeadi0123@mail.com" className="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-xl font-semibold transition-all hover:scale-105 flex items-center justify-center gap-2">
-            <Mail size={20} />
-            Email Me
-          </a>
-          <a href="https://www.linkedin.com/in/adityashinde9" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-gray-800 hover:bg-gray-700 rounded-xl font-semibold transition-all hover:scale-105 flex items-center justify-center gap-2">
-            <Linkedin size={20} />
-            LinkedIn
-          </a>
-          <a href="tel:+918626080604" className="px-8 py-4 bg-green-600 hover:bg-green-700 rounded-xl font-semibold transition-all hover:scale-105 flex items-center justify-center gap-2">
-            <Phone size={20} />
-            Call Me
-          </a>
+      {/* Achievements */}
+      <section id="achievements" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">Achievements</h2>
+          <p className="text-center text-slate-400 mb-12">Competitions, international rankings & awards</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {achievements.map((a, idx) => (
+              <div key={idx} className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-xl p-6 border border-blue-500/30">
+                <div className="text-4xl mb-4">🏆</div>
+                <h3 className="text-xl font-bold mb-2">{a.title}</h3>
+                <p className="text-blue-400 mb-1">{a.event}</p>
+                <p className="text-slate-400 text-sm">{a.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills */}
+      <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">Skills & Expertise</h2>
+          <p className="text-center text-slate-400 mb-12">Technical capabilities & tools</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {skillCategories.map((cat, idx) => (
+              <div key={idx} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+                <h3 className="text-xl font-bold mb-4">{cat.title}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {cat.skills.map((s, i) => (
+                    <span key={i} className="px-4 py-2 bg-blue-600/20 text-blue-300 rounded-lg border border-blue-500/30">{s}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Let's Connect</h2>
+          <p className="text-slate-400 mb-8">Interested in UAV systems, FPV racing or collaboration?</p>
+
+          <div className="flex flex-wrap gap-4 justify-center">
+            <button onClick={copyEmail} className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+              <Mail size={20} /> Email Me
+            </button>
+            <a href="https://www.linkedin.com/in/adityashinde9" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-700 hover:bg-blue-800 rounded-lg transition-colors">
+              <Linkedin size={20} /> LinkedIn
+            </a>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800 py-8 px-6 text-center text-gray-500">
-        <p>© 2025 Aditya Shinde. Built with React + Tailwind CSS.</p>
-        <p className="text-sm mt-2">UAV Systems Engineer | World Rank 3 FPV Pilot</p>
+      <footer className="py-8 px-4 border-t border-slate-700">
+        <div className="max-w-7xl mx-auto text-center text-slate-400">
+          <p>© 2025 Aditya Shinde — UAV Systems Engineer | FPV Drone Pilot</p>
+        </div>
       </footer>
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
+        }
+      `}</style>
     </div>
   );
-};
-
-export default Portfolio;
+}
