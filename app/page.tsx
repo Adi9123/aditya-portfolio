@@ -251,14 +251,7 @@ export default function HomePage(): JSX.Element {
               </a>
             </div>
 
-            {/* Compact Experience Card (top-right) */}
-            <div className="mt-4 p-4 bg-slate-900/40 rounded-lg border border-slate-700">
-              <h4 className="font-semibold mb-2 flex items-center gap-2">
-                <Briefcase className="w-4 h-4" /> Experience Snapshot
-              </h4>
-              <p className="text-sm text-slate-300 mb-2">Team Lead — UAV & Drone Projects (2023–Present)</p>
-              <p className="text-xs text-slate-400">Also: Design & Automation Intern; Embedded Systems projects.</p>
-            </div>
+             
           </aside>
         </div>
       </header>
