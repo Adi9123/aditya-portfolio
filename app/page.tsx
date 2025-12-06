@@ -211,6 +211,10 @@ export default function HomePage(): JSX.Element {
                   </span>
                 </h2>
                 <p className="text-blue-300 font-semibold">UAV Systems Engineer | FPV Drone Pilot</p>
+                <p className="text-sm text-slate-400">
+                  Final-year B.E. Electronics & Telecommunication Engineering Student (MMCOE, Pune)
+                </p>
+
               </div>
             </div>
 
